@@ -1,4 +1,4 @@
 #!/usr/bin/env mode
-import gameEven from '../src/brain-even.js'
+import engine from '../src/engine.js'
 
-gameEven()
+engine("even")
