@@ -1,5 +1,25 @@
 #!/usr/bin/env node
+import readlineSync from 'readline-sync'
+import welcome, { isEven, getRandomNumber } from '../src/cli.js'
 
-import gameEngine from "../src/engine.js";
+export default function game(name) {
+  let i = 0
+  while (i < 3) {
+    const randNumber = getRandomNumber(1, 100)
+    console.log(`Question: ${randNumber}`)
+    const answer = readlineSync.question('Your answer: ')
+    const correct = isEven(randNumber)
 
-gameEngine("even");
+    if (correct === answer) {
+      console.log('Correct')
+      i += 1
+    }
+    else {
+      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correct}'.\nLet's try again, ${name}!`)
+      return
+    }
+  }
+  console.log(`Congratulations, ${name}!`)
+}
+
+game(welcome('Answer "yes" if the number is even, otherwise answer "no".'))
